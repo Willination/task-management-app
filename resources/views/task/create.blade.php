@@ -39,7 +39,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">{{ isset($task) ? 'Update Task' : 'Create Task' }}</button>
+            <button type="submit" class="btn mt-3 btn-primary">{{ isset($task) ? 'Update Task' : 'Create Task' }}</button>
         </form>
     </div>
 @endsection
