@@ -6,6 +6,7 @@
         <h1>{{ Auth::user()->name }}'s Tasks</h1>
 
         <form class="mb-3" method="GET" action="{{ route('tasks.index') }}">
+            @csrf
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search tasks" name="search" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -50,7 +51,13 @@
                 <tr>
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->description }}</td>
-                    <td>{{ $task->status }}</td>
+                    @if($task->status =='pending')
+                        <td>Pending</td>
+                    @elseif($task->status =='in_progress')
+                        <td>In Progress</td>
+                    @else
+                        <td>Completed</td>
+                    @endif
                     <td>{{ $task->created_at->format('Y-m-d H:i:s') }}</td>
                     <td>
                         <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-warning">Edit</a>

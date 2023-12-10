@@ -12,12 +12,14 @@ class TaskController extends Controller
         $query = Task::where('user_id', auth()->id());
 
         // Check for status parameter
-        if ($request->has('status')) {
+        //if ($request->has('status')) {
+        if (isset($request->status)) {
             $query->where('status', $request->input('status'));
         }
 
         // Check for sort_by parameter
-        if ($request->has('sort_by')) {
+        //if ($request->has('sort_by')) {
+        if (isset($request->sort_by)) {
             $sortableColumns = ['created_at', 'status']; // Add more columns if needed
             if (in_array($request->input('sort_by'), $sortableColumns)) {
                 $query->orderBy($request->input('sort_by'));
@@ -25,18 +27,25 @@ class TaskController extends Controller
         }
 
         // Handle clearing
-        if ($request->has('clear')) {
+        //if ($request->has('clear')) {
+        if (isset($request->clear)) {
             // Reset all filters
             return redirect()->route('tasks.index');
         }
 
         // Check for dynamic search
-        if ($request->has('search')) {
+        //if ($request->has('search')) {
+        if (isset($request->search)) {
             $searchTerm = $request->input('search');
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('title', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('description', 'like', '%' . $searchTerm . '%');
-            });
+
+            $query->where('title', 'like', '%' . $searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                ->get();
+
+//            $query->where(function ($q) use ($searchTerm) {
+//                $q->where('title', 'like', '%' . $searchTerm . '%')
+//                    ->orWhere('description', 'like', '%' . $searchTerm . '%');
+//            });
         }
 
         $tasks = $query->paginate(20);
