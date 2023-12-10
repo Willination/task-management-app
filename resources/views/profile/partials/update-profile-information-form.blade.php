@@ -54,14 +54,13 @@
             @endif
         </div>
 
-        <div class="d-flex gap-4">
+        <div class="d-flex">
             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
-
-            @if (session('status') === 'profile-updated')
-                <p class="text-sm text-secondary">
-                    {{ __('Saved.') }}
-                </p>
-            @endif
         </div>
+        @if (session('status') === 'profile-updated')
+            <p class="text-sm mt-3 ps-2 text-secondary">
+                {{ __('Saved') }}
+            </p>
+        @endif
     </form>
 </section>
