@@ -13,6 +13,13 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <style>
+        body {
+            background-color: white!important;
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
 </head>
