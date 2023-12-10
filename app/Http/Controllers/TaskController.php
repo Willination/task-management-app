@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -19,11 +20,17 @@ class TaskController extends Controller
 
         // Check for sort_by parameter
         //if ($request->has('sort_by')) {
-        if (isset($request->sort_by)) {
-            $sortableColumns = ['created_at', 'status']; // Add more columns if needed
-            if (in_array($request->input('sort_by'), $sortableColumns)) {
-                $query->orderBy($request->input('sort_by'));
+        if ($request->has('sort_by')) {
+            $sortField = $request->input('sort_by');
+
+            // Determine the order (asc or desc)
+            $sortOrder = 'asc';
+            if (Str::endsWith($sortField, '_desc')) {
+                $sortOrder = 'desc';
+                $sortField = rtrim($sortField, '_desc');
             }
+
+            $query->orderBy($sortField, $sortOrder);
         }
 
         // Handle clearing

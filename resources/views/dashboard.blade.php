@@ -25,8 +25,10 @@
             <div class="col-4">
                 <select class="form-control" name="sort_by">
                     <option value="">-- Sort By --</option>
-                    <option value="created_at" @if(request('sort_by') == 'created_at') selected @endif>Created At</option>
-                    <option value="status" @if(request('sort_by') == 'status') selected @endif>Status</option>
+                    <option value="created_at" @if(request('sort_by') == 'created_at') selected @endif>Created At (Asc)</option>
+                    <option value="created_at_desc" @if(request('sort_by') == 'created_at_desc') selected @endif>Created At (Desc)</option>
+                    <option value="status" @if(request('sort_by') == 'status') selected @endif>Status (Asc)</option>
+                    <option value="status_desc" @if(request('sort_by') == 'status_desc') selected @endif>Status (Desc)</option>
                 </select>
             </div>
             <div class="col-4">
