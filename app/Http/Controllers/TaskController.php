@@ -20,7 +20,7 @@ class TaskController extends Controller
 
         // Check for sort_by parameter
         //if ($request->has('sort_by')) {
-        if ($request->has('sort_by')) {
+        if (isset($request->sort_by)) {
             $sortField = $request->input('sort_by');
 
             // Determine the order (asc or desc)
@@ -30,7 +30,10 @@ class TaskController extends Controller
                 $sortField = rtrim($sortField, '_desc');
             }
 
-            $query->orderBy($sortField, $sortOrder);
+            // Check if the $sortField is not empty
+            if (!empty($sortField)) {
+                $query->orderBy($sortField, $sortOrder);
+            }
         }
 
         // Handle clearing
