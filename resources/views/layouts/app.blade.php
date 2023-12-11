@@ -34,11 +34,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <div class="shrink-0 flex items-center">
-                            <a href="{{ route('dashboard') }}">
-                                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                            </a>
-                        </div>
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
